@@ -5,4 +5,8 @@ public class DummyMissile implements Missile {
     public void launch() {
         throw new RuntimeException();
     }
+
+    @Override
+    public void disable() {
+    }
 }

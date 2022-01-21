@@ -30,4 +30,41 @@ class MissileLauncherTest {
         assertFalse(missileSpy.launchWasCalled());
     }
 
+    @Test
+    public void givenExpiredLaunchCodes_CodeRedAbort_spy() {
+        MissileSpy missileSpy = new MissileSpy();
+
+        launchMissile(missileSpy, new ExpiredLaunchCodeStub());
+
+        assertFalse(missileSpy.launchWasCalled());
+        assertTrue(missileSpy.disableWasCalled());
+    }
+
+    @Test
+    public void givenUnsignedLaunchCodes_CodeRedAbort_spy() {
+        MissileSpy missileSpy = new MissileSpy();
+
+        launchMissile(missileSpy, new UnsignedLaunchCodeStub());
+
+        assertFalse(missileSpy.launchWasCalled());
+        assertTrue(missileSpy.disableWasCalled());
+    }
+
+    @Test
+    public void givenExpiredLaunchCodes_CodeRedAbort_mock() {
+        MissileMock missileMock = new MissileMock();
+
+        launchMissile(missileMock, new ExpiredLaunchCodeStub());
+
+        missileMock.verifyCodeRedAbort();
+    }
+
+    @Test
+    public void givenUnsignedLaunchCodes_CodeRedAbort_mock() {
+        MissileMock missileMock = new MissileMock();
+
+        launchMissile(missileMock, new UnsignedLaunchCodeStub());
+
+        missileMock.verifyCodeRedAbort();
+    }
 }

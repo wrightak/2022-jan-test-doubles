@@ -1,13 +1,13 @@
 package missile;
 
-public class ExpiredLaunchCodeStub implements LaunchCode {
+public class UnsignedLaunchCodeStub implements LaunchCode {
     @Override
     public boolean isExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isSigned() {
-        return true;
+        return false;
     }
 }
